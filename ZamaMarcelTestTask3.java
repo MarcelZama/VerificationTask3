@@ -699,4 +699,23 @@ class ZamaMarcelTestTask3 {
 
         assertEquals(rate.calculate(periodStay), new BigDecimal(5.5).setScale(2, RoundingMode.UP));
     }
+
+    // Test case to ensure that Student calculate will return correct value when the value of rate.calculate(periodStay) is less than 5.5
+    @Test
+    public void testStudentDataLessFivePointFive() {
+        CarParkKind kind = CarParkKind.STUDENT;
+        BigDecimal normalRate = BigDecimal.ONE;
+        BigDecimal reducedRate = new BigDecimal(0.5);
+        ArrayList<Period> normalPeriods = new ArrayList<>();
+        normalPeriods.add(new Period(0,12));
+
+        ArrayList<Period> reducedPeriods = new ArrayList<>();
+        reducedPeriods.add(new Period(12,23));
+
+        Period periodStay = new Period(8,13);
+
+        Rate rate = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
+
+        assertEquals(rate.calculate(periodStay), new BigDecimal(4.5).setScale(2, RoundingMode.UP));
+    }
 }
