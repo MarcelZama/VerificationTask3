@@ -504,9 +504,10 @@ class ZamaMarcelTestTask3 {
         reducedPeriods.add(new Period(12,20));
 
         Period periodStay = new Period(8, 10);
+
         // Check that the constructor does throw an exceptions as it should
          Rate rate = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
-        System.out.println(rate.calculate(periodStay));
+
         assertNotEquals(rate.calculate(periodStay), BigDecimal.ZERO);
     }
 
@@ -544,5 +545,24 @@ class ZamaMarcelTestTask3 {
         reducedPeriods.add(new Period(12,20));
 
         Assertions.assertThrows(IllegalArgumentException.class, () -> new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods));
+    }
+
+    // Test case to ensure that CarParkKind Visitor calculate rate matches the data provided in the specification
+    @Test
+    public void testVisitorNewData() {
+        CarParkKind kind = CarParkKind.VISITOR;
+        BigDecimal normalRate = BigDecimal.ONE;
+        BigDecimal reducedRate = BigDecimal.ONE;
+        ArrayList<Period> normalPeriods = new ArrayList<>();
+        normalPeriods.add(new Period(0,12));
+
+        ArrayList<Period> reducedPeriods = new ArrayList<>();
+        reducedPeriods.add(new Period(12,23));
+
+        Period periodStay = new Period(2, 14);
+
+        Rate rate = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
+
+        assertEquals(rate.calculate(periodStay), BigDecimal.ONE);
     }
 }
