@@ -105,7 +105,7 @@ public class Rate {
             }
             else
             {
-                return BigDecimal.ZERO;
+                return BigDecimal.ZERO.setScale(2, RoundingMode.UP);
             }
         }
 
