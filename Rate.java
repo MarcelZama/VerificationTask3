@@ -1,4 +1,6 @@
+import java.beans.Visibility;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -91,6 +93,22 @@ public class Rate {
     public BigDecimal calculate(Period periodStay) {
         int normalRateHours = periodStay.occurences(normal);
         int reducedRateHours = periodStay.occurences(reduced);
+
+        // New changes added corresponding to the new changes in the specification.
+        if (this.kind == CarParkKind.VISITOR)
+        {
+            BigDecimal results = (this.hourlyNormalRate.multiply(BigDecimal.valueOf(normalRateHours))).add(this.hourlyReducedRate.multiply(BigDecimal.valueOf(reducedRateHours)));
+            if( results.compareTo(BigDecimal.TEN)>= 0)
+            {
+                results = results.subtract(BigDecimal.TEN);
+                return results.multiply(new BigDecimal(0.5)).setScale(2, RoundingMode.UP);
+            }
+            else
+            {
+                return BigDecimal.ZERO;
+            }
+        }
+
         return (this.hourlyNormalRate.multiply(BigDecimal.valueOf(normalRateHours))).add(
                 this.hourlyReducedRate.multiply(BigDecimal.valueOf(reducedRateHours)));
     }

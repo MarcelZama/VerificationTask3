@@ -1,6 +1,7 @@
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.Assertions;
@@ -563,6 +564,6 @@ class ZamaMarcelTestTask3 {
 
         Rate rate = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
 
-        assertEquals(rate.calculate(periodStay), BigDecimal.ONE);
+        assertEquals(rate.calculate(periodStay), new BigDecimal(1.0).setScale(2, RoundingMode.UP));
     }
 }
