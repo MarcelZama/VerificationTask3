@@ -607,7 +607,7 @@ class ZamaMarcelTestTask3 {
 
     // Test case to ensure that Management.calculate returns at least 5 even if the number returned by calculate is less than five
     @Test
-    public void testManagementDataLessFive() {
+    public void testManagementDataLessThanFive() {
         CarParkKind kind = CarParkKind.MANAGEMENT;
         BigDecimal normalRate = BigDecimal.ONE;
         BigDecimal reducedRate = BigDecimal.ONE;
@@ -624,7 +624,7 @@ class ZamaMarcelTestTask3 {
         assertEquals(rate.calculate(periodStay), new BigDecimal(5).setScale(2, RoundingMode.UP));
     }
 
-    // Test case to ensure that Management.calculate returns 5 if the calculate.return value is 5
+    // Test case to ensure that Management calculate returns 5 if the calculate.return value is 5
     @Test
     public void testManagementDataEqualFive() {
         CarParkKind kind = CarParkKind.MANAGEMENT;
@@ -641,5 +641,24 @@ class ZamaMarcelTestTask3 {
         Rate rate = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
 
         assertEquals(rate.calculate(periodStay), new BigDecimal(5).setScale(2, RoundingMode.UP));
+    }
+
+    // Test case to ensure that Management calculate is correct when value is grater than minimum payment of 5
+    @Test
+    public void testManagementDataBiggerThanFive() {
+        CarParkKind kind = CarParkKind.MANAGEMENT;
+        BigDecimal normalRate = BigDecimal.ONE;
+        BigDecimal reducedRate = BigDecimal.ONE;
+        ArrayList<Period> normalPeriods = new ArrayList<>();
+        normalPeriods.add(new Period(0,12));
+
+        ArrayList<Period> reducedPeriods = new ArrayList<>();
+        reducedPeriods.add(new Period(12,23));
+
+        Period periodStay = new Period(0,6);
+
+        Rate rate = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
+
+        assertEquals(rate.calculate(periodStay), new BigDecimal(6).setScale(2, RoundingMode.UP));
     }
 }
