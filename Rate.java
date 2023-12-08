@@ -121,7 +121,7 @@ public class Rate {
         else if(this.kind == CarParkKind.STUDENT)
         {
             BigDecimal results = (this.hourlyNormalRate.multiply(BigDecimal.valueOf(normalRateHours))).add(this.hourlyReducedRate.multiply(BigDecimal.valueOf(reducedRateHours)));
-            if(results.compareTo(new BigDecimal(5.5)) >= 0)
+            if(results.compareTo(new BigDecimal(5.5)) > 0)
             {
                 BigDecimal remaining = results.subtract(new BigDecimal(5.5)).multiply(new BigDecimal(.33));
                 return results.subtract(remaining).setScale(2, RoundingMode.DOWN);
