@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-class ZamaMarcelTestTask2 {
+class ZamaMarcelTestTask3 {
     // 			Verification Project Task 2
     //							By Marcel Zama (C00260146)
     //		Date :23/11/2023
@@ -490,7 +490,7 @@ class ZamaMarcelTestTask2 {
     }
 
     @Test
-    public void testVistiro() {
+    public void testVistor() {
         CarParkKind kind = CarParkKind.VISITOR;
         BigDecimal normalRate = BigDecimal.ONE;
         BigDecimal reducedRate = BigDecimal.ZERO;
@@ -500,12 +500,12 @@ class ZamaMarcelTestTask2 {
 
         ArrayList<Period> reducedPeriods = new ArrayList<>();
         reducedPeriods.add(new Period(5,8));
-        reducedPeriods.add(new Period(12,16));
+        reducedPeriods.add(new Period(12,20));
 
-        Period periodStay = new Period(15, 18);
+        Period periodStay = new Period(8, 10);
         // Check that the constructor does throw an exceptions as it should
          Rate rate = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
-
+        System.out.println(rate.calculate(periodStay));
         assertNotEquals(rate.calculate(periodStay), BigDecimal.ZERO);
     }
 }
