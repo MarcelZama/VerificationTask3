@@ -548,9 +548,9 @@ class ZamaMarcelTestTask3 {
         Assertions.assertThrows(IllegalArgumentException.class, () -> new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods));
     }
 
-    // Test case to ensure that CarParkKind Visitor calculate rate matches the data provided in the specification
+    // Test case to ensure that Visitor.calculate returns 1 if the number of normalPeriods hours is equal to 10 plus 2 hours from reducedPeriods witch are calculated as (each multiply by 0.5)
     @Test
-    public void testVisitorNewData() {
+    public void testVisitorNewData() { // above ten
         CarParkKind kind = CarParkKind.VISITOR;
         BigDecimal normalRate = BigDecimal.ONE;
         BigDecimal reducedRate = BigDecimal.ONE;
@@ -565,5 +565,24 @@ class ZamaMarcelTestTask3 {
         Rate rate = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
 
         assertEquals(rate.calculate(periodStay), new BigDecimal(1.0).setScale(2, RoundingMode.UP));
+    }
+
+    // Test case to ensure that Visitor.calculate returns 0 if the number of normalPeriods hours is equal to 10 , as expected by fallowing the specification.
+    @Test
+    public void testVisitorDataEqualTen() { // above ten
+        CarParkKind kind = CarParkKind.VISITOR;
+        BigDecimal normalRate = BigDecimal.ONE;
+        BigDecimal reducedRate = BigDecimal.ONE;
+        ArrayList<Period> normalPeriods = new ArrayList<>();
+        normalPeriods.add(new Period(0,12));
+
+        ArrayList<Period> reducedPeriods = new ArrayList<>();
+        reducedPeriods.add(new Period(12,23));
+
+        Period periodStay = new Period(0, 10);
+
+        Rate rate = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
+
+        assertEquals(rate.calculate(periodStay), new BigDecimal(0).setScale(2, RoundingMode.UP));
     }
 }
