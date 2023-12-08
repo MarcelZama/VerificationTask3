@@ -129,6 +129,13 @@ public class Rate {
             else
                 return results.setScale(2,RoundingMode.DOWN);
         }
+        else if(this.kind == CarParkKind.STAFF) {
+            BigDecimal results = (this.hourlyNormalRate.multiply(BigDecimal.valueOf(normalRateHours))).add(this.hourlyReducedRate.multiply(BigDecimal.valueOf(reducedRateHours)));
+            if (results.compareTo(new BigDecimal(10)) < 0) {
+                return results.setScale(2, RoundingMode.DOWN);
+            } else
+                return (new BigDecimal(10)).setScale(2, RoundingMode.DOWN);
+        }
         return (this.hourlyNormalRate.multiply(BigDecimal.valueOf(normalRateHours))).add(
                 this.hourlyReducedRate.multiply(BigDecimal.valueOf(reducedRateHours)));
     }
