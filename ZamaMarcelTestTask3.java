@@ -489,8 +489,9 @@ class ZamaMarcelTestTask3 {
         Assertions.assertThrows(IllegalArgumentException.class, () -> new Rate(CarParkKind.STUDENT, BigDecimal.ZERO, BigDecimal.ZERO,normalPeriods,reducedPeriods));
     }
 
+    // Test case to ensure that Visitor.calculate() does not return 0
     @Test
-    public void testVistor() {
+    public void testVistorEqualNotZero() {
         CarParkKind kind = CarParkKind.VISITOR;
         BigDecimal normalRate = BigDecimal.ONE;
         BigDecimal reducedRate = BigDecimal.ZERO;
@@ -507,5 +508,24 @@ class ZamaMarcelTestTask3 {
          Rate rate = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
         System.out.println(rate.calculate(periodStay));
         assertNotEquals(rate.calculate(periodStay), BigDecimal.ZERO);
+    }
+
+    // Test case to ensure that Normal Rate can be equal to the Reduced Rate
+    @Test
+    public void testNormalRateCanEqualReducedRate() {
+        CarParkKind kind = CarParkKind.VISITOR;
+        BigDecimal normalRate = BigDecimal.ZERO;
+        BigDecimal reducedRate = BigDecimal.ZERO;
+        ArrayList<Period> normalPeriods = new ArrayList<>();
+        normalPeriods.add(new Period(1,5));
+        normalPeriods.add(new Period(8,12));
+
+        ArrayList<Period> reducedPeriods = new ArrayList<>();
+        reducedPeriods.add(new Period(5,8));
+        reducedPeriods.add(new Period(12,20));
+
+        Period periodStay = new Period(8, 10);
+
+        assertDoesNotThrow(() -> new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods));
     }
 }
