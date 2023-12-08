@@ -623,4 +623,23 @@ class ZamaMarcelTestTask3 {
 
         assertEquals(rate.calculate(periodStay), new BigDecimal(5).setScale(2, RoundingMode.UP));
     }
+
+    // Test case to ensure that Management.calculate returns 5 if the calculate.return value is 5
+    @Test
+    public void testManagementDataEqualFive() {
+        CarParkKind kind = CarParkKind.MANAGEMENT;
+        BigDecimal normalRate = BigDecimal.ONE;
+        BigDecimal reducedRate = BigDecimal.ONE;
+        ArrayList<Period> normalPeriods = new ArrayList<>();
+        normalPeriods.add(new Period(0,12));
+
+        ArrayList<Period> reducedPeriods = new ArrayList<>();
+        reducedPeriods.add(new Period(12,23));
+
+        Period periodStay = new Period(0, 5);
+
+        Rate rate = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
+
+        assertEquals(rate.calculate(periodStay), new BigDecimal(5).setScale(2, RoundingMode.UP));
+    }
 }
