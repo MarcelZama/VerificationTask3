@@ -564,7 +564,7 @@ class ZamaMarcelTestTask3 {
 
         Rate rate = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
 
-        assertEquals(rate.calculate(periodStay), new BigDecimal(1.0).setScale(2, RoundingMode.UP));
+        assertEquals(rate.calculate(periodStay), new BigDecimal(1).setScale(2, RoundingMode.UP));
     }
 
     // Test case to ensure that Visitor.calculate returns 0 if the number of normalPeriods hours is equal to 10 , as expected by following the specification.
@@ -603,5 +603,24 @@ class ZamaMarcelTestTask3 {
         Rate rate = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
 
         assertEquals(rate.calculate(periodStay), new BigDecimal(0).setScale(2, RoundingMode.UP));
+    }
+
+    // Test case to ensure that Management.calculate returns at least 5 even if the number returned by calculate is less than five
+    @Test
+    public void testManagementDataLessFive() {
+        CarParkKind kind = CarParkKind.MANAGEMENT;
+        BigDecimal normalRate = BigDecimal.ONE;
+        BigDecimal reducedRate = BigDecimal.ONE;
+        ArrayList<Period> normalPeriods = new ArrayList<>();
+        normalPeriods.add(new Period(0,12));
+
+        ArrayList<Period> reducedPeriods = new ArrayList<>();
+        reducedPeriods.add(new Period(12,23));
+
+        Period periodStay = new Period(0, 4);
+
+        Rate rate = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
+
+        assertEquals(rate.calculate(periodStay), new BigDecimal(5).setScale(2, RoundingMode.UP));
     }
 }
