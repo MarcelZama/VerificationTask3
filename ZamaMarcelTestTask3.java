@@ -528,4 +528,21 @@ class ZamaMarcelTestTask3 {
 
         assertDoesNotThrow(() -> new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods));
     }
+
+    // Test case to ensure that CarParkKind can not be Null
+    @Test
+    public void testCarParkKindNull() {
+        CarParkKind kind = null;
+        BigDecimal normalRate = BigDecimal.ZERO;
+        BigDecimal reducedRate = BigDecimal.ZERO;
+        ArrayList<Period> normalPeriods = new ArrayList<>();
+        normalPeriods.add(new Period(1,5));
+        normalPeriods.add(new Period(8,12));
+
+        ArrayList<Period> reducedPeriods = new ArrayList<>();
+        reducedPeriods.add(new Period(5,8));
+        reducedPeriods.add(new Period(12,20));
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods));
+    }
 }
