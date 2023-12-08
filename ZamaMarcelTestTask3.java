@@ -775,4 +775,23 @@ class ZamaMarcelTestTask3 {
 
         assertEquals(rate.calculate(periodStay), new BigDecimal(10).setScale(2, RoundingMode.UP));
     }
+
+    // Test case to ensure that the interface is implemented corresponding to the Specification
+    @Test
+    public void testNewStrategyPatternInterface() {
+        CarParkKind kind = CarParkKind.STAFF;
+        BigDecimal normalRate = BigDecimal.ONE;
+        BigDecimal reducedRate = new BigDecimal(0.5);
+        ArrayList<Period> normalPeriods = new ArrayList<>();
+        normalPeriods.add(new Period(0,12));
+
+        ArrayList<Period> reducedPeriods = new ArrayList<>();
+        reducedPeriods.add(new Period(12,23));
+
+        Period periodStay = new Period(3,7);
+
+        Rate rate = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
+
+        assertEquals(rate.calculate(periodStay), new BigDecimal(4).setScale(2, RoundingMode.UP));
+    }
 }
