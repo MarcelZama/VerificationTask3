@@ -811,6 +811,6 @@ class ZamaMarcelTestTask3 {
 
         Rate rate = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
 
-        assertEquals(rate.calculate(periodStay), new BigDecimal(13.54).setScale(2, RoundingMode.UP));
+        assertEquals(rate.calculate(periodStay), new BigDecimal(13.54).setScale(2, RoundingMode.DOWN));
     }
 }
