@@ -794,4 +794,23 @@ class ZamaMarcelTestTask3 {
 
         assertEquals(rate.calculate(periodStay), new BigDecimal(4).setScale(2, RoundingMode.UP));
     }
+
+    // Test case to ensure that the new Student Behavioural Implementation returns the correct value as stated in the Specification
+    @Test
+    public void testStudentStrategyPatternImplementationWithLargeValue() {
+        CarParkKind kind = CarParkKind.STUDENT;
+        BigDecimal normalRate = BigDecimal.ONE;
+        BigDecimal reducedRate = new BigDecimal(0.5);
+        ArrayList<Period> normalPeriods = new ArrayList<>();
+        normalPeriods.add(new Period(0,12));
+
+        ArrayList<Period> reducedPeriods = new ArrayList<>();
+        reducedPeriods.add(new Period(12,23));
+
+        Period periodStay = new Period(0,23);
+
+        Rate rate = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
+
+        assertEquals(rate.calculate(periodStay), new BigDecimal(13.54).setScale(2, RoundingMode.UP));
+    }
 }
