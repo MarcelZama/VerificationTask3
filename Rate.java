@@ -112,13 +112,8 @@ public class Rate {
         }
         else if(this.kind == CarParkKind.MANAGEMENT)
         {
-            BigDecimal results = (this.hourlyNormalRate.multiply(BigDecimal.valueOf(normalRateHours))).add(this.hourlyReducedRate.multiply(BigDecimal.valueOf(reducedRateHours)));
-            if(results.compareTo(new BigDecimal(5)) <= 0)
-            {
-                return (new BigDecimal(5)).setScale(2, RoundingMode.UP);
-            }
-            else
-                return results.setScale(2,RoundingMode.UP);
+            CalculateBehaviour = new ManagementCalculate();
+            return CalculateBehaviour.ParentCalculate(this.hourlyNormalRate, this.hourlyReducedRate, this.normal, this.reduced, periodStay);
         }
         else if(this.kind == CarParkKind.STUDENT)
         {
