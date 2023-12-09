@@ -813,4 +813,24 @@ class ZamaMarcelTestTask3 {
 
         assertEquals(rate.calculate(periodStay), new BigDecimal(13.54).setScale(2, RoundingMode.DOWN));
     }
+
+    // Test case to ensure that the new Management Behavioural Implementation using Strategy Pattern returns the correct value as stated in the Specification
+    @Test
+    public void testManagementStrategyPatternImplementationWithZeroValue() {
+        CarParkKind kind = CarParkKind.MANAGEMENT;
+        BigDecimal normalRate = BigDecimal.ONE;
+        BigDecimal reducedRate = new BigDecimal(0);
+        ArrayList<Period> normalPeriods = new ArrayList<>();
+        normalPeriods.add(new Period(0,12));
+
+        ArrayList<Period> reducedPeriods = new ArrayList<>();
+        reducedPeriods.add(new Period(12,23));
+
+        Period periodStay = new Period(14,16);
+
+        Rate rate = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
+
+        assertEquals(rate.calculate(periodStay), new BigDecimal(5).setScale(2, RoundingMode.DOWN));
+    }
+
 }
