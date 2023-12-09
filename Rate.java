@@ -11,6 +11,8 @@ public class Rate {
     private ArrayList<Period> reduced = new ArrayList<>();
     private ArrayList<Period> normal = new ArrayList<>();
 
+    private ICalculate CalculateBehaviour = null;
+
     public Rate(CarParkKind kind, BigDecimal normalRate, BigDecimal reducedRate, ArrayList<Period> normalPeriods, ArrayList<Period> reducedPeriods) {
         if (kind == null) {
             throw new IllegalArgumentException("CarParkKind can not be equal to null");
@@ -130,11 +132,8 @@ public class Rate {
                 return results.setScale(2,RoundingMode.DOWN);
         }
         else if(this.kind == CarParkKind.STAFF) {
-            BigDecimal results = (this.hourlyNormalRate.multiply(BigDecimal.valueOf(normalRateHours))).add(this.hourlyReducedRate.multiply(BigDecimal.valueOf(reducedRateHours)));
-            if (results.compareTo(new BigDecimal(10)) < 0) {
-                return results.setScale(2, RoundingMode.DOWN);
-            } else
-                return (new BigDecimal(10)).setScale(2, RoundingMode.DOWN);
+            CalculateBehaviour = new StaffCalculate();
+            return CalculateBehaviour.ParentCalculate(this.hourlyNormalRate, this.hourlyReducedRate, this.normal, this.reduced, periodStay);
         }
         return (this.hourlyNormalRate.multiply(BigDecimal.valueOf(normalRateHours))).add(
                 this.hourlyReducedRate.multiply(BigDecimal.valueOf(reducedRateHours)));
