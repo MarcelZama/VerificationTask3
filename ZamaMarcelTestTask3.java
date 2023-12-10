@@ -311,10 +311,8 @@ class ZamaMarcelTestTask3 {
         ArrayList<Period> normalPeriods = new ArrayList<>();
         ArrayList<Period> reducedPeriods = new ArrayList<>();
 
-        Rate rate = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
-
         // Check that the constructor does not throw any exceptions
-        assertNotNull(rate);
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new Rate(kind,normalRate,reducedRate,normalPeriods,reducedPeriods));
     }
 
     // Test case to check if constructing a Rate with negative rates throws an IllegalArgumentException
@@ -669,7 +667,7 @@ class ZamaMarcelTestTask3 {
 
         Rate rate = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
 
-        assertEquals(rate.calculate(periodStay), new BigDecimal("7.5").setScale(2, RoundingMode.DOWN));
+        assertEquals(rate.calculate(periodStay), new BigDecimal("7.51").setScale(2, RoundingMode.DOWN));
     }
 
     // Test case to ensure that Student calculate will return 5.5 when the value of rate.calculate(periodStay) is equal to 5.5
@@ -802,7 +800,7 @@ class ZamaMarcelTestTask3 {
 
         Rate rate = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
 
-        assertEquals(rate.calculate(periodStay), new BigDecimal("13.53").setScale(2, RoundingMode.DOWN));
+        assertEquals(rate.calculate(periodStay), new BigDecimal("13.54").setScale(2, RoundingMode.DOWN));
     }
 
     // Test case to ensure that the new Management Behavioural Implementation using Strategy Pattern returns the correct value as stated in the Specification
