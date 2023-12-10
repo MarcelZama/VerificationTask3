@@ -3,7 +3,7 @@ import java.math.RoundingMode;
 import java.util.ArrayList;
 
 public class ManagementCalculate implements ICalculate{
-    private final static BigDecimal minimumPayment = new BigDecimal(5);
+    private final static BigDecimal minimumPayment = new BigDecimal("5");
     public BigDecimal ParentCalculate(BigDecimal normalRate, BigDecimal reducedRate, ArrayList<Period> normalPeriods, ArrayList<Period> reducedPeriods, Period periodStay)
     {
         int normalRateHours = periodStay.occurences(normalPeriods);

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class StaffCalculate implements ICalculate{
 
-    private final static BigDecimal staffMaxPay = new BigDecimal(10);
+    private final static BigDecimal staffMaxPay = new BigDecimal("10");
     public BigDecimal ParentCalculate(BigDecimal normalRate, BigDecimal reducedRate, ArrayList<Period> normalPeriods, ArrayList<Period> reducedPeriods, Period periodStay)
     {
         int normalRateHours = periodStay.occurences(normalPeriods);

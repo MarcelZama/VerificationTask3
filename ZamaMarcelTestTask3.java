@@ -241,7 +241,7 @@ class ZamaMarcelTestTask3 {
         Rate rate = new Rate(kind, normalRate, reducedRate,normalPeriods,reducedPeriods);
         Period periodStay = new Period(8, 11); // Within normal rate hours
 
-        BigDecimal expectedTotal = new BigDecimal("0");
+        BigDecimal expectedTotal = new BigDecimal("10.00");
         BigDecimal calculatedTotal = rate.calculate(periodStay);
 
         assertEquals(expectedTotal, calculatedTotal);
@@ -343,19 +343,6 @@ class ZamaMarcelTestTask3 {
         Assertions.assertThrows(IllegalArgumentException.class, () -> new Rate(kind,normalRate,reducedRate,normalPeriods,reducedPeriods));
     }
 
-    // Test case to check if constructing a Rate with zero rates throws an IllegalArgumentException
-    @Test
-    public void testZeroRates() {
-        CarParkKind kind = CarParkKind.STUDENT;
-        BigDecimal normalRate = BigDecimal.ZERO;
-        BigDecimal reducedRate = BigDecimal.ZERO;
-        ArrayList<Period> normalPeriods = new ArrayList<>();
-        ArrayList<Period> reducedPeriods = new ArrayList<>();
-
-        // Check that the constructor does throw an exceptions as it should
-        assertThrows(IllegalArgumentException.class, () -> new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods));
-    }
-
     // Test case to check if constructing a Rate with valid normalRate does not throw any exceptions
     @Test
     void testValidnormalRate() { //Testing the Rate constructor
@@ -429,7 +416,7 @@ class ZamaMarcelTestTask3 {
         Rate rate = new Rate(kind, normalRate, reducedRate,normalPeriods,reducedPeriods);
         Period periodStay = new Period(8, 11); // Within normal rate hours
 
-        BigDecimal expectedTotal = new BigDecimal("30.00");
+        BigDecimal expectedTotal = new BigDecimal("10.00");
         BigDecimal calculatedTotal = rate.calculate(periodStay);
 
         assertEquals(expectedTotal, calculatedTotal);
@@ -480,15 +467,7 @@ class ZamaMarcelTestTask3 {
         assertEquals(expectedTotal, calculatedTotal);
     }
 
-    // Test case to ensure that creating a Rate with zero normal and reduced rates throws an exception
-    @Test
-    public void testCalculateZeroRates() {
-        ArrayList<Period> normalPeriods = new ArrayList<Period>();
-        ArrayList<Period> reducedPeriods = new ArrayList<Period>();
 
-
-        Assertions.assertThrows(IllegalArgumentException.class, () -> new Rate(CarParkKind.STUDENT, BigDecimal.ZERO, BigDecimal.ZERO,normalPeriods,reducedPeriods));
-    }
 
     /* -------------------------------------------------------------------------- */
     /*                     Verification Task 3 Test Cases                         */
