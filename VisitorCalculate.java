@@ -19,7 +19,7 @@ public class VisitorCalculate implements ICalculate{
         }
         else
         {
-            return BigDecimal.ZERO.setScale(2, RoundingMode.UP);
+            return results.setScale(2, RoundingMode.UP);
         }
     }
 }

@@ -99,16 +99,8 @@ public class Rate {
         // New changes added corresponding to the new changes in the specification.
         if (this.kind == CarParkKind.VISITOR)
         {
-            BigDecimal results = (this.hourlyNormalRate.multiply(BigDecimal.valueOf(normalRateHours))).add(this.hourlyReducedRate.multiply(BigDecimal.valueOf(reducedRateHours)));
-            if( results.compareTo(BigDecimal.TEN)>= 0)
-            {
-                results = results.subtract(BigDecimal.TEN);
-                return results.multiply(new BigDecimal(0.5)).setScale(2, RoundingMode.UP);
-            }
-            else
-            {
-                return BigDecimal.ZERO.setScale(2, RoundingMode.UP);
-            }
+            CalculateBehaviour = new VisitorCalculate();
+            return CalculateBehaviour.ParentCalculate(this.hourlyNormalRate, this.hourlyReducedRate, this.normal, this.reduced, periodStay);
         }
         else if(this.kind == CarParkKind.MANAGEMENT)
         {
