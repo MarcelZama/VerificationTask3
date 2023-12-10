@@ -15,11 +15,12 @@ public class VisitorCalculate implements ICalculate{
         if( results.compareTo(freeFee)>= 0)
         {
             results = results.subtract(freeFee);
-            return results.multiply(procentageReduction).setScale(2, RoundingMode.UP);
+            return results.multiply(procentageReduction).setScale(2, RoundingMode.DOWN);
         }
         else
         {
-            return results.setScale(2, RoundingMode.UP);
+            results = new BigDecimal(0);
+            return results.setScale(2, RoundingMode.DOWN);
         }
     }
 }

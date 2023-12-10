@@ -12,9 +12,9 @@ public class ManagementCalculate implements ICalculate{
         BigDecimal results = (normalRate.multiply(BigDecimal.valueOf(normalRateHours))).add(reducedRate.multiply(BigDecimal.valueOf(reducedRateHours)));
         if(results.compareTo(minimumPayment) <= 0)
         {
-            return (minimumPayment).setScale(2, RoundingMode.UP);
+            return (minimumPayment).setScale(2, RoundingMode.DOWN);
         }
         else
-            return results.setScale(2,RoundingMode.UP);
+            return results.setScale(2,RoundingMode.DOWN);
     }
 }

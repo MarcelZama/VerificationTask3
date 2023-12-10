@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class ZamaMarcelTestTask3 {
-    // 			Verification Project Task 2
+    // 			Verification Project Task 3
     //							By Marcel Zama (C00260146)
     //		Date :23/11/2023
 
@@ -564,7 +564,7 @@ class ZamaMarcelTestTask3 {
 
         Rate rate = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
 
-        assertEquals(rate.calculate(periodStay), new BigDecimal(1).setScale(2, RoundingMode.UP));
+        assertEquals(rate.calculate(periodStay), new BigDecimal(1).setScale(2, RoundingMode.DOWN));
     }
 
     // Test case to ensure that Visitor.calculate returns 0 if the number of normalPeriods hours is equal to 10 , as expected by following the specification.
@@ -583,7 +583,7 @@ class ZamaMarcelTestTask3 {
 
         Rate rate = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
 
-        assertEquals(rate.calculate(periodStay), new BigDecimal(0).setScale(2, RoundingMode.UP));
+        assertEquals(rate.calculate(periodStay), new BigDecimal(0).setScale(2, RoundingMode.DOWN));
     }
 
     // Test case to ensure that Visitor.calculate returns 0 if the number of normalPeriods hours is equal to 8 , as expected by following the specification.
@@ -602,7 +602,7 @@ class ZamaMarcelTestTask3 {
 
         Rate rate = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
 
-        assertEquals(rate.calculate(periodStay), new BigDecimal(0).setScale(2, RoundingMode.UP));
+        assertEquals(rate.calculate(periodStay), new BigDecimal(0).setScale(2, RoundingMode.DOWN));
     }
 
     // Test case to ensure that Management.calculate returns at least 5 even if the number returned by calculate is less than five
@@ -621,7 +621,7 @@ class ZamaMarcelTestTask3 {
 
         Rate rate = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
 
-        assertEquals(rate.calculate(periodStay), new BigDecimal(5).setScale(2, RoundingMode.UP));
+        assertEquals(rate.calculate(periodStay), new BigDecimal(5).setScale(2, RoundingMode.DOWN));
     }
 
     // Test case to ensure that Management calculate returns 5 if the calculate.return value is 5
@@ -640,7 +640,7 @@ class ZamaMarcelTestTask3 {
 
         Rate rate = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
 
-        assertEquals(rate.calculate(periodStay), new BigDecimal(5).setScale(2, RoundingMode.UP));
+        assertEquals(rate.calculate(periodStay), new BigDecimal(5).setScale(2, RoundingMode.DOWN));
     }
 
     // Test case to ensure that Management calculate is correct when value is grater than minimum payment of 5
@@ -659,7 +659,7 @@ class ZamaMarcelTestTask3 {
 
         Rate rate = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
 
-        assertEquals(rate.calculate(periodStay), new BigDecimal(6).setScale(2, RoundingMode.UP));
+        assertEquals(rate.calculate(periodStay), new BigDecimal(6).setScale(2, RoundingMode.DOWN));
     }
 
     // Test case to ensure that Student calculate will return correct value when above 5.5 as by following the new changes in the specification
@@ -678,7 +678,7 @@ class ZamaMarcelTestTask3 {
 
         Rate rate = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
 
-        assertEquals(rate.calculate(periodStay), new BigDecimal(7.5).setScale(2, RoundingMode.UP));
+        assertEquals(rate.calculate(periodStay), new BigDecimal(7.5).setScale(2, RoundingMode.DOWN));
     }
 
     // Test case to ensure that Student calculate will return 5.5 when the value of rate.calculate(periodStay) is equal to 5.5
@@ -697,7 +697,7 @@ class ZamaMarcelTestTask3 {
 
         Rate rate = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
 
-        assertEquals(rate.calculate(periodStay), new BigDecimal(5.5).setScale(2, RoundingMode.UP));
+        assertEquals(rate.calculate(periodStay), new BigDecimal(5.5).setScale(2, RoundingMode.DOWN));
     }
 
     // Test case to ensure that Student calculate will return correct value when the value of rate.calculate(periodStay) is less than 5.5
@@ -716,7 +716,7 @@ class ZamaMarcelTestTask3 {
 
         Rate rate = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
 
-        assertEquals(rate.calculate(periodStay), new BigDecimal(4.5).setScale(2, RoundingMode.UP));
+        assertEquals(rate.calculate(periodStay), new BigDecimal(4.5).setScale(2, RoundingMode.DOWN));
     }
 
     // Test case to ensure that Staff calculate will return correct value when above 10 as by following the new changes in the specification
@@ -735,7 +735,7 @@ class ZamaMarcelTestTask3 {
 
         Rate rate = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
 
-        assertEquals(rate.calculate(periodStay), new BigDecimal(10).setScale(2, RoundingMode.UP));
+        assertEquals(rate.calculate(periodStay), new BigDecimal(10).setScale(2, RoundingMode.DOWN));
     }
 
     // Test case to ensure that Staff calculate will return correct value when below 10 as by following the new changes in the specification
@@ -754,7 +754,7 @@ class ZamaMarcelTestTask3 {
 
         Rate rate = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
 
-        assertEquals(rate.calculate(periodStay), new BigDecimal(6).setScale(2, RoundingMode.UP));
+        assertEquals(rate.calculate(periodStay), new BigDecimal(6).setScale(2, RoundingMode.DOWN));
     }
 
     // Test case to ensure that Staff calculate will return correct value when equal to 10 as by following the new changes in the specification
@@ -773,7 +773,7 @@ class ZamaMarcelTestTask3 {
 
         Rate rate = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
 
-        assertEquals(rate.calculate(periodStay), new BigDecimal(10).setScale(2, RoundingMode.UP));
+        assertEquals(rate.calculate(periodStay), new BigDecimal(10).setScale(2, RoundingMode.DOWN));
     }
 
     // Test case to ensure that the interface is implemented corresponding to the Specification
@@ -792,7 +792,7 @@ class ZamaMarcelTestTask3 {
 
         Rate rate = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
 
-        assertEquals(rate.calculate(periodStay), new BigDecimal(4).setScale(2, RoundingMode.UP));
+        assertEquals(rate.calculate(periodStay), new BigDecimal(4).setScale(2, RoundingMode.DOWN));
     }
 
     // Test case to ensure that the new Student Behavioural Implementation returns the correct value as stated in the Specification
