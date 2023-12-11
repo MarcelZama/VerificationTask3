@@ -10,10 +10,10 @@ import org.junit.jupiter.api.Test;
 class ZamaMarcelTestTask3 {
     // 			Verification Project Task 3
     //							By Marcel Zama (C00260146)
-    //		Date :23/11/2023
+    //		Date : 10/12/2023
 
-    // Branch Coverage :  Rate - 100% (36/36)
-    //                    Period - 96% (25/26)
+    // Branch Coverage :  Rate - 100% (42/42)
+    //                    Period - 100% (24/24)
 
     /* -------------------------------------------------------------------------- */
     /*                     Period Class Test Cases                                */
@@ -339,6 +339,19 @@ class ZamaMarcelTestTask3 {
 
         // Chatch the exeption if the contructor does throw an exeption
         Assertions.assertThrows(IllegalArgumentException.class, () -> new Rate(kind,normalRate,reducedRate,normalPeriods,reducedPeriods));
+    }
+
+    // Test case to check if constructing a Rate with zero rates does not throw an IllegalArgumentException
+    @Test
+    public void testZeroRates() {
+        CarParkKind kind = CarParkKind.STUDENT;
+        BigDecimal normalRate = BigDecimal.ZERO;
+        BigDecimal reducedRate = BigDecimal.ZERO;
+        ArrayList<Period> normalPeriods = new ArrayList<>();
+        ArrayList<Period> reducedPeriods = new ArrayList<>();
+        Rate test = new Rate(kind, normalRate, reducedRate, normalPeriods, reducedPeriods);
+        // Check that the constructor does not throw an exceptions
+        assertNotNull(test);
     }
 
     // Test case to check if constructing a Rate with valid normalRate does not throw any exceptions
