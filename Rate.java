@@ -112,12 +112,10 @@ public class Rate {
             CalculateBehaviour = new StudentCalculate();
             return CalculateBehaviour.ParentCalculate(this.hourlyNormalRate, this.hourlyReducedRate, this.normal, this.reduced, periodStay);
         }
-        else if(this.kind == CarParkKind.STAFF) {
+        else{
             CalculateBehaviour = new StaffCalculate();
             return CalculateBehaviour.ParentCalculate(this.hourlyNormalRate, this.hourlyReducedRate, this.normal, this.reduced, periodStay);
         }
-        return (this.hourlyNormalRate.multiply(BigDecimal.valueOf(normalRateHours))).add(
-                this.hourlyReducedRate.multiply(BigDecimal.valueOf(reducedRateHours)));
     }
 
 }
